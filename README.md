@@ -2,7 +2,7 @@
 
 For guidance on setting up and submitting this assignment, refer to the Marcy lab School Docs How-To guide for [Working with Short Response and Coding Assignments](https://marcylabschool.gitbook.io/marcy-lab-school-docs/fullstack-curriculum/how-tos/working-with-assignments#how-to-work-on-assignments).
 
-## Prompt 1
+## Prompt 1 - Braily
 
 Imagine you are teaching a friend about OOP. They mainly want to understand what is Encapsulation. Write a brief lesson on Encapsulation that includes the following:
 
@@ -12,6 +12,40 @@ Imagine you are teaching a friend about OOP. They mainly want to understand what
 * An explanation of how the code example demonstrates encapsulation
 
 ### Response 1
+
+In OOP, **encapsulation** is a fundamental concept that consists of bundling data and methods into a single unit. In _software engineering_, the main goal this helps achieve is to prevent data from being directly accessed, while still allowing access to the data through the object's functions. 
+
+```js
+class Person {
+    #friends = [];
+
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    getFriends() {
+        return [...this.#friends];
+    }
+
+    addFriend(newFriend) {
+        if (!newFriend || typeof newFriend !== 'string') return;
+        this.#friends.push(newFriend);
+    }
+}
+```
+### How This Demonstrates Encapsulation
+
+1. Private Field (`#friends`):
+The friends array is private, meaning it cannot be accessed directly from outside the class. This ensures that only controlled methods (`getFriends` and `addFriend1) can modify or retrieve the data.
+
+2. Getter Method (`getFriends`):
+This method returns a copy of the `friends` array rather than the original, preventing external code from modifying it directly.
+
+3. Setter Method (`addFriend`):
+This method ensures that only valid string values are added to the `friends` array, preventing unintended or incorrect data from being stored.
+
+By encapsulating the `friends` array, we protect internal data, enforce controller access and prevent unintended side effects in the program.
 
 ## Prompt 2
 
