@@ -110,6 +110,84 @@ How would you explain to a budding developer what the drawbacks of using factory
 
 ### Response 3
 
+The drawbacks of factory functions are:
+
+#### 1. Memory Inefficiency
+
+-   Every time that you create an object with a factory function, methods get duplicated in memory for each object.
+-   Example:
+
+```js
+const createPerson = (name, city) => {
+    // Returns an anonymous object with the properties and methods
+    return {
+        name,
+        greet() {
+            console.log(`Hey there, I'm ${name} based in ${city}.`);
+        },
+    };
+};
+
+// Every time we invoke the function, we are storing the methods in memory every time, leading to duplicates.
+const person1 = createPerson('Max', 'Los Angeles');
+const person2 = createPerson('Thomas', 'New York');
+```
+
+#### 2. Lack of Prototypes (Slower Performance)
+
+-   Factory functions don't use the prototype system efficiently while classes allow methods to be shared via prototypes which improves performance.
+
+#### 3. No `instanceof` Check
+
+-   Objects created with factory functions aren't instance of anything
+-   For example:
+
+```js
+console.log(person1 instanceof createPerson); // false
+```
+
+-   With classes, you can check the instance:
+
+```js
+class Person {
+    constructor(person, city) {
+        this.person = person;
+        this.city = city;
+    }
+
+    greet() {
+        console.log(`Hey there, I'm ${this.name} based in ${this.city}.`);
+    }
+}
+
+const person1 = createPerson('Max', 'Los Angeles');
+
+console.log(person1 instanceof Person); // true
+```
+
+#### 4. Less readable and Standardized
+
+-   The `class` syntax is more common and easier to read.
+-   Example:
+
+```js
+class Car {
+    constructor(make, model, year) {
+        this.make = make;
+        this.model = model;
+        this.year = year;
+    }
+
+    sayMessage() {
+        console.log(
+            `Vroom Vroom! I'm a ${this.year} ${this.make} ${this.model}`
+        );
+    }
+}
+const camry = new Car('Toyota', 'Camry', 2025);
+camry.sayMessage(); // Vroom Vroom! I'm a 2025 Toyota Camry
+```
+
 ## Prompt 4 - Suru
 
 Do some research on the history of when / how classes were introduced into JavaScript and share your findings. Your response should include:
